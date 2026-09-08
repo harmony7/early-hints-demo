@@ -1,0 +1,41 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = []
+description = "103 Early Hints デモ: 学習型(バックエンドの Link ヘッダーを edge が記憶)"
+language = "javascript"
+manifest_version = 3
+name = "pattern-b-learning"
+service_id = ""
+
+[local_server]
+
+  [local_server.backends]
+
+    [local_server.backends.origin]
+      override_host = "127.0.0.1:8080"
+      url = "http://127.0.0.1:8080"
+
+  # ローカル用の空の KV ストア。この行が無いと `new KVStore(...)` が
+  # 「ストアが見つからない」とのことで例外になり、ローカルでは 500 になる。
+  # 注意: `fastly compute publish` はマニフェストを書き戻すときに
+  # この行を落とすことがある。publish 後は残っているか確認する。
+  [local_server.kv_stores]
+    early-hints-cache = []
+
+[scripts]
+  build = "npm run build"
+
+[setup]
+
+  [setup.backends]
+
+    [setup.backends.origin]
+      address = "REPLACE-ME.edgecompute.app"
+      description = "think time を持つ擬似オリジン(mock-origin-compute)"
+      port = 443
+
+  [setup.kv_stores]
+
+    [setup.kv_stores.early-hints-cache]
+      description = "オリジンの Link ヘッダーを学習して置いておく場所"

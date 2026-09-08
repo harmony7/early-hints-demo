@@ -1,0 +1,15 @@
+{
+  "name": "pattern-c-manifest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "103 Early Hints デモ: マニフェスト型(バックエンドが資材の一覧を公開)",
+  "scripts": {
+    "build": "js-compute-runtime src/index.js bin/main.wasm",
+    "start": "fastly compute serve --addr 127.0.0.1:7678"
+  },
+  "devDependencies": {
+    "@fastly/cli": "^16.0.0",
+    "@fastly/js-compute": "^3.45.1"
+  }
+}

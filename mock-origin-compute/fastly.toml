@@ -1,0 +1,15 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = []
+description = "103 Early Hints デモ用の擬似オリジン(think time を持つ遅いアプリサーバ)"
+language = "javascript"
+manifest_version = 3
+name = "early-hints-demo-origin"
+service_id = ""
+
+# バックエンドを持たないサービス(自分で HTML と資材を返すだけ)。
+[local_server]
+
+[scripts]
+  build = "npm run build"

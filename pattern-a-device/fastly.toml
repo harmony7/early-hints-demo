@@ -1,0 +1,29 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = []
+description = "103 Early Hints デモ: edge 完結型(デバイス判定)"
+language = "javascript"
+manifest_version = 3
+name = "pattern-a-device"
+service_id = ""
+
+[local_server]
+
+  [local_server.backends]
+
+    [local_server.backends.origin]
+      override_host = "127.0.0.1:8080"
+      url = "http://127.0.0.1:8080"
+
+[scripts]
+  build = "npm run build"
+
+[setup]
+
+  [setup.backends]
+
+    [setup.backends.origin]
+      address = "REPLACE-ME.edgecompute.app"
+      description = "think time を持つ擬似オリジン(mock-origin-compute)"
+      port = 443
